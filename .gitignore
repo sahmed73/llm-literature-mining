@@ -1,0 +1,16 @@
+# Secrets and local settings
+.env
+
+# Pipeline outputs, logs, and paper files (large and/or copyrighted)
+output/
+logs/
+data/
+*.log
+llm-demo-*.out
+slurm-*.out
+slurm-*.err
+
+# Python and OS clutter
+__pycache__/
+*.pyc
+.DS_Store

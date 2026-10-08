@@ -1,0 +1,4 @@
+requests>=2.28
+lxml>=4.9
+PyMuPDF>=1.23
+beautifulsoup4>=4.12
