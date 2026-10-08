@@ -1,4 +1,4 @@
-# llm-lit-mining-antioxidants
+# llm-literature-mining
 
 A pipeline that uses a **locally hosted large language model** to read the scientific
 literature at scale and pull out the antioxidant additives used in lubricants. It
@@ -163,8 +163,8 @@ Requirements: Python 3.10+, [Ollama](https://ollama.com), and an NVIDIA GPU for 
 steps (the other steps run on CPU).
 
 ```bash
-git clone https://github.com/sahmed73/llm-lit-mining-antioxidants.git
-cd llm-lit-mining-antioxidants
+git clone https://github.com/sahmed73/llm-literature-mining.git
+cd llm-literature-mining
 pip install -r requirements.txt        # or a conda / micromamba environment
 cp .env.example .env                   # contact email, optional API keys, model choice
 

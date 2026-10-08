@@ -22,7 +22,7 @@ INPUT_JSON = os.path.join(BASE_DIR, "..", "02-relevance-scorer", "output", "peek
 # Identity
 EMAIL = os.environ.get("CONTACT_EMAIL", "your_email@university.edu")
 USER_AGENT = (
-    "llm-lit-mining-antioxidants/1.0 "
+    "llm-literature-mining/1.0 "
     f"(mailto:{EMAIL}; academic research)"
 )
 

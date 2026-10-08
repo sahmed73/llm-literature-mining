@@ -16,7 +16,7 @@ import config as cfg
 log = logging.getLogger(__name__)
 
 _session = requests.Session()
-_session.headers.update({"User-Agent": "llm-lit-mining-antioxidants/1.0 (academic research)"})
+_session.headers.update({"User-Agent": "llm-literature-mining/1.0 (academic research)"})
 _last_request_ts = 0.0
 _api_call_count = 0
 
