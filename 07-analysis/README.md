@@ -32,11 +32,13 @@ From `06-smiles-filter/output`:
 `make_smiles_space_plots.py`
 - `01_priority_type_counts.png`
 - `02_heavy_atom_distribution.png`
-- `03_pca_chemical_space.png`
+- `03_pca_chemical_space.png`, `04_tsne_chemical_space.png`, `05_umap_chemical_space.png` (UMAP needs `umap-learn`)
+- `06_paper_score_distribution.png`: relevance scores of the papers that have an abstract
 - `embedding_points.csv`
 - `plot_stats.json`
 
-The plotting stage now removes stale old figures before writing the new outputs, so legacy PCA, t-SNE, heatmap, and similarity-distribution figures are not kept around.
+`curate_aminic_antioxidants.py`
+- conservative review of the aminic candidates in the extraction output, written to `output/aminic_curation/`
 
 ## Run
 

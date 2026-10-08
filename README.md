@@ -13,24 +13,25 @@ Everything runs on open-weight models (Llama 3, Qwen, or any model served by
 
 | | |
 |---|---|
-| Records harvested from 7 literature APIs | 1.54 million |
-| Unique papers scored for relevance by the LLM (0–10) | **392,289** |
-| Papers kept as relevant (score ≥ 6) | 2,188 |
-| Papers read by the LLM for compound extraction | 5,524 (3,338 full texts, 2,186 abstracts) |
-| Antioxidant mentions extracted as structured JSON | 20,763 (9,125 unique names) |
-| Unique chemical structures after PubChem resolution | 556, including 172 phenolic and 34 aminic antioxidants |
-| Model used for the full runs | Llama 3 8B (4-bit) on NVIDIA L40S GPUs; also tested with Llama 3 70B and Qwen 3 30B |
+| Records harvested from 7 literature APIs | 1,535,419, deduplicated to 1,156,902 unique papers |
+| Papers scored for relevance by the LLM (0–10) | **1,156,902** (392,289 with an abstract, the rest by title only) |
+| Papers kept as relevant (score ≥ 6) | 3,944 |
+| Documents read by the LLM for compound extraction | 5,524: 3,338 full-text PDFs, plus 2,186 abstracts of relevant papers with no PDF |
+| Antioxidant mentions extracted as structured JSON | 22,230 from 4,180 documents (9,427 unique names) |
+| Unique chemical structures classified with RDKit | 556, including 172 phenolic and 34 aminic antioxidants |
+| Model used for the full runs | Llama 3 8B on NVIDIA L40S GPUs; also tested with Llama 3 70B and Qwen 3 30B |
 
 <p align="center">
   <img src="docs/relevance_score_distribution.png" width="560"
-       alt="Bar chart of LLM relevance scores from 0 to 10 for 392,289 papers on a log scale">
+       alt="Bar chart of LLM relevance scores from 0 to 10 for 1,156,902 papers on a log scale">
 </p>
 
-*LLM relevance scores for all 392,289 papers (log scale). The model was asked how closely each
-title and abstract relates to antioxidant additives for lubricants. Green bars (score ≥ 6, 2,188
-papers) were passed on to compound extraction; red bars were filtered out. Most of the corpus
-scores 0–2, which is the point of the step: a keyword search returns hundreds of thousands of
-papers, and the LLM narrows them to the few thousand worth reading.*
+*LLM relevance scores for all 1,156,902 papers (log scale). The model rated how closely each
+paper relates to antioxidant additives for lubricants, from its title and abstract (or the title
+alone when no abstract was available). Green bars (score ≥ 6, 3,944 papers) were passed on to
+compound extraction; red bars were filtered out. Over 99% of the corpus scores 0–2, which is the
+point of the step: a broad keyword search returns more than a million papers, and the LLM
+narrows them to the few thousand worth reading.*
 
 ### What this project shows
 
@@ -182,8 +183,8 @@ export from a reference manager.
 ## Data
 
 The repository contains code only. Paper PDFs and full texts belong to their publishers
-and are not redistributed, and the pipeline outputs (about 15 GB) are not included; the
-code regenerates them. The example abstract in `llm/demo.py` is from my own open-access
+and are not redistributed, and the pipeline outputs (several gigabytes) are not included;
+the code regenerates them. The example abstract in `llm/demo.py` is from my own open-access
 paper (CC BY 4.0).
 
 ## Author

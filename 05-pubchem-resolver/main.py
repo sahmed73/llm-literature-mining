@@ -7,6 +7,7 @@ import csv
 import json
 import logging
 import os
+import re
 import sys
 import time
 from typing import Dict, List
@@ -254,12 +255,21 @@ def _build_link_rows(mentions: List[dict], resolved_map: Dict[str, dict]) -> Lis
     return rows
 
 
+# Text extracted from PDFs can contain NUL and other control characters, which the
+# csv module refuses to write (it stops with "need to escape").
+_CONTROL_CHARS = re.compile(r"[\x00-\x08\x0b\x0c\x0e-\x1f\x7f]")
+
+
+def _csv_value(value):
+    return _CONTROL_CHARS.sub("", value) if isinstance(value, str) else value
+
+
 def _write_csv(path: str, rows: List[dict], fieldnames: List[str]):
     with open(path, "w", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(f, fieldnames=fieldnames)
         writer.writeheader()
         for row in rows:
-            writer.writerow(row)
+            writer.writerow({key: _csv_value(value) for key, value in row.items()})
 
 
 def main():
